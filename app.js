@@ -4,7 +4,7 @@ let currentPassword = "password123"; // Baseline password for session
 let allActivities = [];
 
 // ================= GOOGLE IDENTITY SERVICES CONFIGURATION =================
-const GOOGLE_CLIENT_ID = "YOUR_CLIENT_ID_HERE.apps.googleusercontent.com";
+const GOOGLE_CLIENT_ID = "859755446396-6b8ao8jobi1gcq4ip2g5fsi2h6ah3e8r.apps.googleusercontent.com";
 
 window.addEventListener('load', () => {
   if (window.google && window.google.accounts) {
