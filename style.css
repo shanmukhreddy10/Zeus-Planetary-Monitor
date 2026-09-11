@@ -189,23 +189,14 @@ body {
   color: var(--text-dim);
 }
 
-.btn-google {
-  width: 100%;
-  background: #fff;
-  color: #1e293b;
-  border: none;
-  padding: 0.72rem;
-  border-radius: 6px;
-  font-weight: 600;
+/* Google Identity Services Button Container */
+.google-btn-wrapper {
   display: flex;
-  align-items: center;
   justify-content: center;
-  gap: 0.6rem;
-  cursor: pointer;
-}
-
-.btn-google:hover {
-  background: #f1f5f9;
+  align-items: center;
+  width: 100%;
+  min-height: 44px;
+  margin-top: 0.5rem;
 }
 
 /* ================= TOP APP BAR ================= */
