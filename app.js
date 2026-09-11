@@ -2,6 +2,7 @@
 let currentUser = null;
 let currentPassword = "password123"; // Baseline password for session
 let allActivities = [];
+
 // ================= GOOGLE IDENTITY SERVICES CONFIGURATION =================
 const GOOGLE_CLIENT_ID = "YOUR_CLIENT_ID_HERE.apps.googleusercontent.com";
 
@@ -19,7 +20,7 @@ window.addEventListener('load', () => {
         theme: "outline",
         size: "large",
         shape: "rectangular",
-        width: 320,
+        width: 380,
         text: "signin_with"
       }
     );
@@ -288,7 +289,6 @@ authForm.addEventListener('submit', (e) => {
     loginUser(email, defaultName, "India");
   }
 });
-
 
 logoutBtn.addEventListener('click', () => {
   currentUser = null;
