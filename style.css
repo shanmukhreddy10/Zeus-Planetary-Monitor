@@ -190,7 +190,6 @@ body {
 }
 
 /* Google Identity Services Button Container */
-/* Google Identity Services Button Container */
 .google-btn-wrapper {
   display: flex !important;
   justify-content: center !important;
@@ -200,7 +199,6 @@ body {
   margin-top: 0.8rem;
 }
 
-/* Centers Google's dynamically inserted iframe container */
 .google-btn-wrapper > div {
   margin: 0 auto !important;
   display: flex !important;
