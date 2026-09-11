@@ -190,13 +190,21 @@ body {
 }
 
 /* Google Identity Services Button Container */
+/* Google Identity Services Button Container */
 .google-btn-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
   min-height: 44px;
-  margin-top: 0.5rem;
+  margin-top: 0.8rem;
+}
+
+/* Centers Google's dynamically inserted iframe container */
+.google-btn-wrapper > div {
+  margin: 0 auto !important;
+  display: flex !important;
+  justify-content: center !important;
 }
 
 /* ================= TOP APP BAR ================= */
