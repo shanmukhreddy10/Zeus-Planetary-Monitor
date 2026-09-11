@@ -2,6 +2,55 @@
 let currentUser = null;
 let currentPassword = "password123"; // Baseline password for session
 let allActivities = [];
+// ================= GOOGLE IDENTITY SERVICES CONFIGURATION =================
+const GOOGLE_CLIENT_ID = "YOUR_CLIENT_ID_HERE.apps.googleusercontent.com";
+
+window.addEventListener('load', () => {
+  if (window.google && window.google.accounts) {
+    google.accounts.id.initialize({
+      client_id: GOOGLE_CLIENT_ID,
+      callback: handleGoogleCredentialResponse,
+      auto_select: false
+    });
+
+    google.accounts.id.renderButton(
+      document.getElementById("google-btn-container"),
+      {
+        theme: "outline",
+        size: "large",
+        shape: "rectangular",
+        width: 320,
+        text: "signin_with"
+      }
+    );
+  }
+});
+
+function decodeJwtResponse(token) {
+  try {
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(
+      atob(base64)
+        .split('')
+        .map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+        .join('')
+    );
+    return JSON.parse(jsonPayload);
+  } catch (e) {
+    console.error("JWT parse error:", e);
+    return null;
+  }
+}
+
+function handleGoogleCredentialResponse(response) {
+  const payload = decodeJwtResponse(response.credential);
+  if (payload) {
+    const googleName = payload.name || payload.given_name || "Google Citizen";
+    const googleEmail = payload.email || "citizen@gmail.com";
+    loginUser(googleEmail, googleName, "United States");
+  }
+}
 
 // ================= GLOBAL RESCUE DIRECTORY (150+ COUNTRIES) =================
 const rescueDirectory = [
@@ -182,7 +231,6 @@ const tabSignIn = document.getElementById('tab-signin');
 const tabSignUp = document.getElementById('tab-signup');
 const authForm = document.getElementById('auth-form');
 const btnSubmitAuth = document.getElementById('btn-submit-auth');
-const btnGoogleAuth = document.getElementById('btn-google-auth');
 
 const signupExtraFields = document.getElementById('signup-extra-fields');
 const regNameInput = document.getElementById('reg-name');
@@ -241,10 +289,6 @@ authForm.addEventListener('submit', (e) => {
   }
 });
 
-// Self-contained Google Sign-In trigger for initial deployment
-btnGoogleAuth.addEventListener('click', () => {
-  loginUser("google.citizen@zeus.org", "Google Citizen", "United States");
-});
 
 logoutBtn.addEventListener('click', () => {
   currentUser = null;
